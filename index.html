@@ -68,53 +68,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-git-svn-更换服务器域名" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/05/git-svn-更换服务器域名/" class="article-date">
-  <time datetime="2016-05-05T06:15:32.000Z" itemprop="datePublished">2016-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: git svn 更换服务器域名<br>date: 2016-05-05 14:15:32<br>tags:git svn<br>—1. 更换地址</p>
-<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-37"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-37" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:37]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:37]</h1><p>$ git config svn-remote.svn.url <a href="http://svn4.imagesay.com:8890/scm/svn/xinzhu-doc" target="_blank" rel="external">http://svn4.imagesay.com:8890/scm/svn/xinzhu-doc</a><br>   更换完域名后测试已不能更新</p>
-<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-43"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-43" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:43]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:43]</h1><p>$ git svn rebase<br>Unable to determine upstream SVN information from working tree history</p>
-<ol>
-<li>切换到git-svn(git 默认给svn创建的版本)<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-55-C-1"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-33-55-C-1" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:55] C:1"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:33:55] C:1</h1>$ git co git-svn<br>Note: checking out ‘git-svn’.</li>
-</ol>
-<p>You are in ‘detached HEAD’ state. You can look around, make experimental<br>changes and commit them, and you can discard any commits you make in this<br>state without impacting any branches by performing another checkout.</p>
-<p>If you want to create a new branch to retain commits you create, you may<br>do so (now or later) by using -b with the checkout command again. Example:</p>
-<p>  git checkout -b <new-branch-name></new-branch-name></p>
-<p>HEAD is now at 8b681cd… svn update2</p>
-<ol>
-<li>此时需要在svn主库上做一个提交,可以让其他用户随便修改或添加一个提交</li>
-<li>等其他用户提交完后我们在git-svn分支做一个更新<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-8b681cd-o-10-33-58"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-8b681cd-o-10-33-58" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:8b681cd o [10:33:58]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:8b681cd o [10:33:58]</h1>$ git svn fetch<br> M   svntest<br>r81 = 50c7c8c44ba3a2a660da932067e6394ccf476917 (refs/remotes/git-svn)</li>
-</ol>
-<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-8b681cd-o-10-35-45"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-8b681cd-o-10-35-45" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:8b681cd o [10:35:45]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:8b681cd o [10:35:45]</h1><ol>
-<li>切换到master<br>$ git co master<br>Switched to branch ‘master’</li>
-<li>执行 git rebase git-svn<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-35-51"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-35-51" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:35:51]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:35:51]</h1>$ git rebase git-svn<br>First, rewinding head to replay your work on top of it…<br>Fast-forwarded master to git-svn.</li>
-<li>查看日志已经是最新的了<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-35-58"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-35-58" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:35:58]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:35:58]</h1>$ git one</li>
-<li>执行 rebase已经不再报错了<h1 id="xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-36-07"><a href="#xinlong-localhost-in-Documents-GIT-svntest-svnClient-xinzhu-test3-xinzhu-doc-on-git-master-o-10-36-07" class="headerlink" title="xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:36:07]"></a>xinlong @ localhost in ~/Documents/GIT/svntest/svnClient/xinzhu-test3/xinzhu-doc on git:master o [10:36:07]</h1>$ git svn rebase<br>Current branch master is up to date.</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/05/git-svn-更换服务器域名/" data-id="cintwhpau0000s2s6x34a7fqf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/05/hello-world/" class="article-date">
@@ -150,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/05/hello-world/" data-id="cintwhpbj0001s2s6ue29bmlb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/05/hello-world/" data-id="cintx433x0000vvs6kmmh1d98" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,10 +141,6 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2016/05/05/git-svn-更换服务器域名/">(no title)</a>
-          </li>
         
           <li>
             <a href="/2016/05/05/hello-world/">Hello World</a>
