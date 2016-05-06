@@ -68,6 +68,92 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-apk-对比签名" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/06/apk-对比签名/" class="article-date">
+  <time datetime="2016-05-06T04:08:54.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/apk-对比签名/">apk 对比签名</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#查找apk里的rsa文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ jar tf ProjectBF_YSDK_R.apk |grep RSA</span><br><span class="line">META-INF/CERT.RSA</span><br></pre></td></tr></table></figure></p>
+<h1 id="从apk中解压rsa文件"><a href="#从apk中解压rsa文件" class="headerlink" title="从apk中解压rsa文件"></a>从apk中解压rsa文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ jar xf ProjectBF_YSDK_R.apk META-INF/CERT.RSA</span><br></pre></td></tr></table></figure>
+<p>#获取签名的fingerprints<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ keytool -printcert -file META-INF/CERT.RSA</span><br><span class="line">Owner: CN=money, OU=super, O=super, L=china chengdu</span><br><span class="line">Issuer: CN=money, OU=super, O=super, L=china chengdu</span><br><span class="line">Serial number: 5410fd89</span><br><span class="line">Valid from: Thu Sep 11 09:40:25 CST 2014 until: Fri Aug 29 09:40:25 CST 2064</span><br><span class="line">Certificate fingerprints:</span><br><span class="line">     MD5:  EE:45:1C:79:6C:FA:29:69:AB:8E:82:97:3E:4B:5A:DC</span><br><span class="line">     SHA1: 4D:36:F3:82:C6:99:4D:D1:53:55:FF:C8:AD:51:94:7B:6A:8F:93:45</span><br><span class="line">     SHA256: F4:E8:33:4F:1F:7D:3D:E0:E4:D0:E1:94:5B:E3:A4:2B:68:3A:62:B6:BD:CA:4D:F0:0D:1F:DF:CB:03:C9:83:98</span><br><span class="line">     Signature algorithm name: SHA1withRSA</span><br><span class="line">     Version: 3</span><br></pre></td></tr></table></figure></p>
+<p>#清理工作，删除rsa文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf META-INF</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/06/apk-对比签名/" data-id="cinv7y3me00016ms647gk58mk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对比签名/">对比签名</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-android-重新签名apk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/06/android-重新签名apk/" class="article-date">
+  <time datetime="2016-05-06T03:52:13.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/android-重新签名apk/">android 重新签名apk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#1.解包<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apktool d /Users/xinlong/Downloads/bfmncq_31_360手机助手_1.0.0.apk</span><br></pre></td></tr></table></figure></p>
+<p>#2 解完包可以去目录下修改文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd /Users/xinlong/Downloads/bfmncq_31_360手机助手_1.0.0</span><br></pre></td></tr></table></figure></p>
+<p>#3打包, 在/Users/xinlong/Downloads/bfmncq_31_360手机助手_1.0.0外面执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apktool b bfmncq_31_360手机助手_1.0.0 bfmncq_31_360手机助手_1.0.0_02.apk</span><br></pre></td></tr></table></figure></p>
+<p>文件位于包里的 dist目录下,貌似生生文件名称和文件夹名字一样</p>
+<p>#4 优化<br>优化sixxdmn_0.9.9_xxdmn_com.tencent.tmgp.eugame.xxdmn.apk<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ cd bfmncq_31_360手机助手_1.0.0/dist</span><br><span class="line">$ l</span><br><span class="line">total 53M</span><br><span class="line">drwxr-xr-x  3 xinlong staff 102 May  6 11:43 .</span><br><span class="line">drwxr-xr-x 11 xinlong staff 374 May  6 11:43 ..</span><br><span class="line">-rw-r--r--  1 xinlong staff 53M May  6 11:43 bfmncq_31_360手机助手_1.0.0.apk</span><br><span class="line"></span><br><span class="line">$ zipalign2 -v 4  bfmncq_31_360手机助手_1.0.0.apk bfmncq_31_360手机助手_1.0.0_zip.apk</span><br><span class="line">Verifying alignment of bfmncq_31_360手机助手_1.0.0_zip.apk (4)...</span><br><span class="line">      49 AndroidManifest.xml (OK - compressed)</span><br><span class="line">    4548 assets/360sdk_res/res_424_1.dat (OK)</span><br><span class="line">  112171 assets/360sdk_res/res_424_2.dat (OK - compressed)</span><br><span class="line">  136352 assets/360sdk_res/res_424_3.dat (OK - compressed)</span><br><span class="line">  457238 assets/360sdk_res/res_424_4.dat (OK - compressed)</span><br><span class="line">  600760 assets/360sdk_res/res_424_5.dat (OK)</span><br><span class="line"> 1074619 assets/360sdk_res/res_424_7.dat (OK - compressed)</span><br><span class="line"> 1114341 assets/config/BGM.cb (OK - compressed)</span><br><span class="line"> 1115033 assets/config/Bond.cb (OK - compressed)</span><br><span class="line"> 1121942 assets/config/Budokan_dungeon.cb (OK - compressed)</span><br><span class="line"> 1122762 assets/config/ShowCard.cb (OK - compressed)</span><br><span class="line"> ....</span><br><span class="line"> 54860668 res/mipmap-xxxhdpi-v4/icon.png (OK)</span><br><span class="line">54945464 resources.arsc (OK)</span><br><span class="line">Verification succesful</span><br></pre></td></tr></table></figure></p>
+<p>重新签名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ jarsigner -verbose -keystore ../../../Desktop/package/MB_Key -signedjar bfmncq_31_360手机助手_1.0.0_sign.apk bfmncq_31_360手 机助手_1.0.0_zip.apk mbkey</span><br><span class="line">Enter Passphrase for keystore:</span><br><span class="line">   adding: META-INF/MANIFEST.MF</span><br><span class="line">   adding: META-INF/MBKEY.SF</span><br><span class="line">   adding: META-INF/MBKEY.RSA</span><br><span class="line">  signing: AndroidManifest.xml</span><br><span class="line">  signing: assets/360sdk_res/res_424_1.dat</span><br><span class="line">  ....</span><br><span class="line">  igning: res/mipmap-xxxhdpi-v4/icon.png</span><br><span class="line">  signing: resources.arsc</span><br><span class="line">jar signed.</span><br><span class="line"></span><br><span class="line">Warning:</span><br><span class="line">No -tsa or -tsacert is provided and this jar is not timestamped. Without a timestamp, users may not be able to validate this jar after the signer certificate&apos;s expiration date (2064-08-29) or after any future revocation date.</span><br><span class="line"></span><br><span class="line">$ l</span><br><span class="line">total 158M</span><br><span class="line">drwxr-xr-x  5 xinlong staff 170 May  6 11:49 .</span><br><span class="line">drwxr-xr-x 11 xinlong staff 374 May  6 11:43 ..</span><br><span class="line">-rw-r--r--  1 xinlong staff 53M May  6 11:45 bfmncq_31_360手机助手_1.0.0.apk</span><br><span class="line">-rw-r--r--  1 xinlong staff 53M May  6 11:49 bfmncq_31_360手机助手_1.0.0_sign.apk</span><br><span class="line">-rw-r--r--  1 xinlong staff 53M May  6 11:46 bfmncq_31_360手机助手_1.0.0_zip.apk</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/05/06/android-重新签名apk/" data-id="cinv7y3m800006ms605xqjuha" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重签名/">重签名</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git-svn-更换服务器域名" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/05/git-svn-更换服务器域名/" class="article-date">
@@ -121,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/05/git-svn-更换服务器域名/" data-id="cintxwygj000138s6iji03e23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/05/git-svn-更换服务器域名/" data-id="cinv7y3mv00076ms6tzd40tsv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-svn/">git svn</a></li></ul>
@@ -168,7 +254,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/05/hello-world/" data-id="cintxwygd000038s6o4dmsu4w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/05/05/hello-world/" data-id="cinv7y3mu00066ms6ng9m83j7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -190,7 +276,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git-svn/">git svn</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git-svn/">git svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/对比签名/">对比签名</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/重签名/">重签名</a></li></ul>
     </div>
   </div>
 
@@ -200,7 +286,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/git-svn/" style="font-size: 10px;">git svn</a>
+      <a href="/tags/git-svn/" style="font-size: 10px;">git svn</a> <a href="/tags/对比签名/" style="font-size: 10px;">对比签名</a> <a href="/tags/重签名/" style="font-size: 10px;">重签名</a>
     </div>
   </div>
 
@@ -220,6 +306,14 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/06/apk-对比签名/">apk 对比签名</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/06/android-重新签名apk/">android 重新签名apk</a>
+          </li>
         
           <li>
             <a href="/2016/05/05/git-svn-更换服务器域名/">git-svn更换服务器域名</a>
